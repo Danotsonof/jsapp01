@@ -1,13 +1,13 @@
 document.getElementById('issueInputForm').addEventListener('submit', saveIssue)
 
 function saveIssue(e) {
-  var issueDesc = document.getElementById('issueDescInput').value
-  var issueSeverity = document.getElementById('issueSeverityInput').value
-  var issueAssignedTo = document.getElementById('issueAssignedToInput').value
-  var issueId = chance.guid();
-  var issueStatus = 'Open'
+  let issueDesc = document.getElementById('issueDescInput').value
+  let issueSeverity = document.getElementById('issueSeverityInput').value
+  let issueAssignedTo = document.getElementById('issueAssignedToInput').value
+  let issueId = chance.guid();
+  let issueStatus = 'Open'
 
-  var issue = {
+  let issue = {
     id: issueId,
     description: issueDesc,
     severity: issueSeverity,
@@ -16,11 +16,11 @@ function saveIssue(e) {
   }
 
   if (localStorage.getItem('issues') == null) {
-    var issues = []
+    let issues = []
     issues.push(issue)
     localStorage.setItem('issues', JSON.stringify(issues))
   } else {
-    var issues = JSON.parse(localStorage.getItem('issues'))
+    let issues = JSON.parse(localStorage.getItem('issues'))
     issues.push(issue)
     localStorage.setItem('issues', JSON.stringify(issues))
   }
@@ -33,9 +33,9 @@ function saveIssue(e) {
 }
 
 function setStatusClosed(id) {
-  var issues = JSON.parse(localStorage.getItem('issues'))
+  let issues = JSON.parse(localStorage.getItem('issues'))
 
-  for (var i = 0; i < issues.length; i++) {
+  for (let i = 0; i < issues.length; i++) {
     if (issues[i].id == id) {
       issues[i].status = 'Closed'
     }
@@ -47,9 +47,9 @@ function setStatusClosed(id) {
 }
 
 function deleteIssue(id) {
-  var issues = JSON.parse(localStorage.getItem('issues'))
+  let issues = JSON.parse(localStorage.getItem('issues'))
 
-  for (var i = 0; i < issues.length; i++) {
+  for (let i = 0; i < issues.length; i++) {
     if (issues[i].id == id) {
       issues.splice(i, 1)
     }
@@ -61,18 +61,18 @@ function deleteIssue(id) {
 }
 
 function fetchIssues() {
-  var issues = JSON.parse(localStorage.getItem('issues'))
-  var issuesList = document.getElementById('issuesList')
+  let issues = JSON.parse(localStorage.getItem('issues'))
+  let issuesList = document.getElementById('issuesList')
 
   issuesList.innerHTML = ''
 
 
-  for (var i = 0; i < issues.length; i++) {
-    var id = issues[i].id
-    var desc = issues[i].description
-    var severity = issues[i].severity
-    var assignedTo = issues[i].assignedTo
-    var status = issues[i].status
+  for (let i = 0; i < issues.length; i++) {
+    let id = issues[i].id
+    let desc = issues[i].description
+    let severity = issues[i].severity
+    let assignedTo = issues[i].assignedTo
+    let status = issues[i].status
 
     issuesList.innerHTML += '<div class="well">'+
                             '<h6>Issue ID: ' + id + '</h6>'+
